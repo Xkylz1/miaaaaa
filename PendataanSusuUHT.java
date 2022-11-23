@@ -21,6 +21,9 @@ public class PendataanSusuUHT {
         String valUname, valPw;
 
         //daftar susu
+        int stokIndomilk=10;
+        int stokUltramilk=11;
+        int milo;
 //        MenuLogin
         do {
             System.out.println("Menu Login");
@@ -63,7 +66,19 @@ public class PendataanSusuUHT {
             menuGudang();
             menu2 = in.nextInt();
             switch (menu2) {
-                case 1:
+                case 1://error
+                    namaBrand();
+                    int id;
+                    System.out.print("Pilihan barang: ");
+                    id=in.nextInt();
+                    System.out.print("Masukan jumlah barang yang ingin dikirim : ");
+                    int jmlKirim=in.nextInt();
+                    String namaBarang=id(id);
+                    kirim(namaBarang,);
+
+//                    System.out.print("Tulis nama barang yang ingin dikirim : ");
+//                    String namaBarang=in2.nextLine().toLowerCase();
+//                    int idBarang;
 
                     break;
                 case 2:
@@ -83,12 +98,14 @@ public class PendataanSusuUHT {
 
     }
 
-    public static int kirim(int stok, int jmlKirim) {
-        return stok;
+    public static int kirim(String brand, int stok, int jmlKirim) {
+        System.out.println("Anda mengirim "+brand+" sebanyak "+jmlKirim);
+        return stok - jmlKirim;
     }
 
-    public static int restock(int stok, int jmlRestock) {
-        return stok;
+    public static int restock(String brand, int stok, int jmlRestock) {
+        System.out.println(brand+" telah di-restock sebanyak "+jmlRestock);
+        return stok+jmlRestock;
     }
 
     //    public static int cekGudang(int stok)
@@ -99,5 +116,41 @@ public class PendataanSusuUHT {
         System.out.println("3. Cek Gudang");
         System.out.println("4. Keluar");
         System.out.print("Pilihan menu:");
+    }
+    public static void namaBrand(){
+        System.out.println("1. Indomilk");
+        System.out.println("2. Ultra Milk");
+        System.out.println("3. Milo");
+        System.out.println("4. Frisian Flag");
+        System.out.println("5. HiLo Teen");
+        System.out.println("6. Cimmory Freshmilk");
+
+    }
+
+    public static String id(int idBarang){
+        String id="";
+        switch (idBarang){
+            case 1:
+                id = "Indomilk";
+                break;
+            case 2:
+                id = "Ultra Milk";
+                break;
+            case 3:
+                id = "Milo";
+                break;
+            case 4:
+                id = "Frissian Flag";
+                break;
+            case 5:
+                id = "HiLo Teen";
+                break;
+            case 6:
+                id = "Cimmory Freshmilk";
+                break;
+            default:
+
+        }
+        return id;
     }
 }
