@@ -13,6 +13,8 @@ public class PendataanSusuUHT {
 //konstanta
         final String invalidInput = "Maaf, input yang anda masukan salah!";
         final String garis = "================================================================================";
+        final int maxGudang = 300;
+        final int maxPerBrand = 60;
 
         //var
         boolean pengulangan = true;
@@ -111,28 +113,52 @@ public class PendataanSusuUHT {
                     switch (id) {
 
                         case 1:
-                            stokIndomilk = kirim("Indomilk", stokIndomilk, jmlKirim);
-                            System.out.println("Sisa stok Indomilk sekarang adalah " + stokIndomilk);
+                            if (stokIndomilk > jmlKirim) {
+                                stokIndomilk = kirim("Indomilk", stokIndomilk, jmlKirim);
+                                System.out.println("Sisa stok Indomilk sekarang adalah " + stokIndomilk);
+                            } else {
+                                err();
+                            }
                             break;
                         case 2:
-                            stokUltramilk = kirim("Ultramilk", stokUltramilk, jmlKirim);
-                            System.out.println("Sisa stok Ultramilk sekarang adalah " + stokUltramilk);
+                            if (stokUltramilk > jmlKirim) {
+                                stokUltramilk = kirim("Ultramilk", stokUltramilk, jmlKirim);
+                                System.out.println("Sisa stok Ultramilk sekarang adalah " + stokUltramilk);
+                            } else {
+                                err();
+                            }
                             break;
                         case 3:
-                            stokMilo = kirim("Milo", stokMilo, jmlKirim);
-                            System.out.println("Sisa stok Milo sekarang adalah " + stokMilo);
+                            if (stokMilo > jmlKirim) {
+                                stokMilo = kirim("Milo", stokMilo, jmlKirim);
+                                System.out.println("Sisa stok Milo sekarang adalah " + stokMilo);
+                            } else {
+                                err();
+                            }
                             break;
                         case 4:
-                            stokFrissianFlag = kirim("Frissianflag", stokFrissianFlag, jmlKirim);
-                            System.out.println("Sisa stok Frissianflag sekarang adalah " + stokFrissianFlag);
+                            if (stokFrissianFlag > jmlKirim) {
+                                stokFrissianFlag = kirim("Frissianflag", stokFrissianFlag, jmlKirim);
+                                System.out.println("Sisa stok Frissianflag sekarang adalah " + stokFrissianFlag);
+                            } else {
+                                err();
+                            }
                             break;
                         case 5:
-                            stokHiLoTeen = kirim("HiLo Teen", stokHiLoTeen, jmlKirim);
-                            System.out.println("Sisa stok HiLo Teen sekarang adalah " + stokHiLoTeen);
+                            if (stokHiLoTeen > jmlKirim) {
+                                stokHiLoTeen = kirim("HiLo Teen", stokHiLoTeen, jmlKirim);
+                                System.out.println("Sisa stok HiLo Teen sekarang adalah " + stokHiLoTeen);
+                            } else {
+                                err();
+                            }
                             break;
                         case 6:
-                            stokCimmoryFreshmilk = kirim("Cimmory Freshmilk", stokCimmoryFreshmilk, jmlKirim);
-                            System.out.println("Sisa stok Cimmory Freshmilk sekarang adalah " + stokCimmoryFreshmilk);
+                            if (stokCimmoryFreshmilk > jmlKirim) {
+                                stokCimmoryFreshmilk = kirim("Cimmory Freshmilk", stokCimmoryFreshmilk, jmlKirim);
+                                System.out.println("Sisa stok Cimmory Freshmilk sekarang adalah " + stokCimmoryFreshmilk);
+                            } else {
+                                err();
+                            }
                             break;
                         default:
                             System.out.println(invalidInput);
@@ -143,7 +169,7 @@ public class PendataanSusuUHT {
                     namaBrand();
                     System.out.print("Pilihan barang: ");
                     id = in.nextInt();
-                    System.out.print("Masukan jumlah barang yang ingin dikirim : ");
+                    System.out.print("Masukan jumlah barang yang ingin di-restock : ");
                     int jmlRestock = in.nextInt();
 
                     switch (id) {
@@ -181,13 +207,29 @@ public class PendataanSusuUHT {
                     infoGudang(stokIndomilk, stokUltramilk, stokMilo, stokFrissianFlag, stokHiLoTeen, stokCimmoryFreshmilk);
                     break;
                 case 4:
+                    System.out.println("Anda menambahkan " + (maxPerBrand - stokIndomilk) + " pcs Indomilk");
+                    stokIndomilk = restockFull(stokIndomilk, maxPerBrand);
+
+                    System.out.println("Anda menambahkan " + (maxPerBrand - stokUltramilk) + " pcs Ultramilk");
+                    stokUltramilk = restockFull(stokUltramilk, maxPerBrand);
+
+                    System.out.println("Anda menambahkan " + (maxPerBrand - stokMilo) + " pcs Milo");
+                    stokMilo = restockFull(stokMilo, maxPerBrand);
+                    System.out.println("Anda menambahkan " + (maxPerBrand - stokFrissianFlag) + " pcs Frissian Flag");
+                    stokFrissianFlag = restockFull(stokFrissianFlag, maxPerBrand);
+                    System.out.println("Anda menambahkan " + (maxPerBrand - stokHiLoTeen) + " pcs Hilo Teen");
+                    stokHiLoTeen = restockFull(stokHiLoTeen, maxPerBrand);
+                    System.out.println("Anda menambahkan " + (maxPerBrand - stokCimmoryFreshmilk) + " pcs Cimmory Freshmilk");
+                    stokCimmoryFreshmilk = restockFull(stokCimmoryFreshmilk, maxPerBrand);
+                    break;
+                case 5:
                     System.out.println("Anda keluar dari aplikasi, Terima kasih!");
                     break;
                 default:
                     System.out.println(invalidInput);
 
             }
-        } while (menu2 != 4);
+        } while (menu2 != 5);
 
     }
 
@@ -206,7 +248,8 @@ public class PendataanSusuUHT {
         System.out.println("1. Kirim Barang");
         System.out.println("2. Restock");
         System.out.println("3. Cek Gudang");
-        System.out.println("4. Keluar");
+        System.out.println("4. Isi Gudang sampai full");
+        System.out.println("5. Keluar");
         System.out.print("Pilihan menu:");
     }
 
@@ -221,12 +264,25 @@ public class PendataanSusuUHT {
     }
 
     public static void infoGudang(int a, int b, int c, int d, int e, int f) {
+        int total = a + b + c + d + e + f;
         System.out.println("Indomilk " + a + " pcs");
         System.out.println("Ultra Milk " + b + " pcs");
         System.out.println("Milo " + c + " pcs");
         System.out.println("Frissian Flag " + d + " pcs");
         System.out.println("HiLo Teen " + e + " pcs");
         System.out.println("Cimmory Freshmilk " + f + " pcs");
+        System.out.println("Kapasitas maksimal gudang adalah 300 pcs,\ndan jumlah barang saat ini adalah " + total);
     }
 
+    public static int restockFull(int stoksekarang, int maxBrand) {
+        int stokBaru = stoksekarang;
+        for (int i = stoksekarang; i < maxBrand; i++) {
+            stokBaru++;
+        }
+        return stokBaru;
+    }
+
+    public static void err() {
+        System.out.println("Terjadi error!");
+    }
 }
