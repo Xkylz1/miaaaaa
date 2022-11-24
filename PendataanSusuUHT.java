@@ -1,9 +1,9 @@
-//package Gudang;
+package gudang;
 
 import java.util.Locale;
 import java.util.Scanner;
 
-public class PendataanSusuUHT {
+public class GudangSusuUHT {
 
     public static void main(String[] args) {
         //Scanner
@@ -13,7 +13,6 @@ public class PendataanSusuUHT {
 //konstanta
         final String invalidInput = "Maaf, input yang anda masukan salah!";
         final String garis = "================================================================================";
-        final int maxGudang = 300;
         final int maxPerBrand = 60;
 
         //var
@@ -271,7 +270,7 @@ public class PendataanSusuUHT {
         System.out.println("Frissian Flag " + d + " pcs");
         System.out.println("HiLo Teen " + e + " pcs");
         System.out.println("Cimmory Freshmilk " + f + " pcs");
-        System.out.println("Kapasitas maksimal gudang adalah 300 pcs,\ndan jumlah barang saat ini adalah " + total);
+        System.out.println("Kapasitas maksimal gudang adalah 360 pcs,\ndan jumlah barang saat ini adalah " + total);
     }
 
     public static int restockFull(int stoksekarang, int maxBrand) {
