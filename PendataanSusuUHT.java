@@ -9,14 +9,16 @@ public class PendataanSusuUHT {
         //Scanner
         Scanner in = new Scanner(System.in);
         Scanner in2 = new Scanner(System.in);
+
 //konstanta
-        final String invalidInput="Maaf, input yang anda masukan salah!";
+        final String invalidInput = "Maaf, input yang anda masukan salah!";
+        final String garis = "================================================================================";
+
         //var
         boolean pengulangan = true;
         int menu;
         String namaDepan = "";
         String namaBelakang = "";
-//        String NIM="";
         String uname = "";
         String pw = "";
         String valUname, valPw;
@@ -24,33 +26,48 @@ public class PendataanSusuUHT {
         //daftar susu
         int stokIndomilk = 10;
         int stokUltramilk = 10;
-        int stokMilo=10;
-        int stokFrissianFlag=10;
-        int stokHiLoTeen=10;
-        int stokCimmoryFreshmilk=10;
+        int stokMilo = 10;
+        int stokFrissianFlag = 10;
+        int stokHiLoTeen = 10;
+        int stokCimmoryFreshmilk = 10;
+
 //        MenuLogin
         do {
+
             System.out.println("Menu Login");
             System.out.println("1. Daftar");
             System.out.println("2. Login");
             System.out.print("Pilihan menu : ");
             menu = in.nextInt();
+
             if (menu == 2) {
+
                 if (uname.equals("") || pw.equals("")) {
+
                     System.out.println("Anda belum mendaftar");
+
                 } else {
+
                     System.out.print("Masukan username: ");
                     valUname = in2.nextLine();
                     System.out.print("Masukan password: ");
                     valPw = in2.nextLine();
+
                     if (valUname.equals(uname) && valPw.equals(pw)) {
+
                         System.out.println("Selamat datang " + namaDepan + " " + namaBelakang);
                         pengulangan = false;
+
                     } else {
+
                         System.out.println("username dan password salah");
+
                     }
+
                 }
-            } else {
+
+            } else if (menu == 1) {
+
                 System.out.print("Nama depan : ");
                 namaDepan = in2.nextLine();
                 System.out.print("Nama belakang : ");
@@ -58,18 +75,31 @@ public class PendataanSusuUHT {
                 System.out.print("NIM : ");
                 pw = in2.nextLine();
                 uname = namaBelakang.toLowerCase(Locale.ROOT);
+
+                System.out.println(garis);
                 System.out.println("username anda adalah " + uname);
                 System.out.println("password anda sama dengan NIM anda");
+                System.out.println(garis);
+
+            } else {
+
+                System.out.println(invalidInput);
 
             }
+
         } while (pengulangan);
 
         //menuGudang
         int menu2;
+
         do {
+
+            System.out.println(garis);
             menuGudang();
             menu2 = in.nextInt();
+
             switch (menu2) {
+
                 case 1://error
                     namaBrand();
                     int id;
@@ -79,6 +109,7 @@ public class PendataanSusuUHT {
                     int jmlKirim = in.nextInt();
 
                     switch (id) {
+
                         case 1:
                             stokIndomilk = kirim("Indomilk", stokIndomilk, jmlKirim);
                             System.out.println("Sisa stok Indomilk sekarang adalah " + stokIndomilk);
@@ -96,35 +127,27 @@ public class PendataanSusuUHT {
                             System.out.println("Sisa stok Frissianflag sekarang adalah " + stokFrissianFlag);
                             break;
                         case 5:
-                            stokHiLoTeen = kirim("HiLoTeen", stokHiLoTeen, jmlKirim);
-                            System.out.println("Sisa stok Indomilk sekarang adalah " + stokHiLoTeen);
+                            stokHiLoTeen = kirim("HiLo Teen", stokHiLoTeen, jmlKirim);
+                            System.out.println("Sisa stok HiLo Teen sekarang adalah " + stokHiLoTeen);
                             break;
                         case 6:
                             stokCimmoryFreshmilk = kirim("Cimmory Freshmilk", stokCimmoryFreshmilk, jmlKirim);
-                            System.out.println("Sisa stok Indomilk sekarang adalah " + stokCimmoryFreshmilk);
+                            System.out.println("Sisa stok Cimmory Freshmilk sekarang adalah " + stokCimmoryFreshmilk);
                             break;
                         default:
                             System.out.println(invalidInput);
                     }
 
-//                    String namaBarang=id(id);
-//                    kirim(namaBarang,);
-
-//                    System.out.print("Tulis nama barang yang ingin dikirim : ");
-//                    String namaBarang=in2.nextLine().toLowerCase();
-//                    int idBarang;
-
-
                     break;
                 case 2:
                     namaBrand();
-//                    int id;
                     System.out.print("Pilihan barang: ");
                     id = in.nextInt();
                     System.out.print("Masukan jumlah barang yang ingin dikirim : ");
                     int jmlRestock = in.nextInt();
 
                     switch (id) {
+
                         case 1:
                             stokIndomilk = restock("Indomilk", stokIndomilk, jmlRestock);
                             System.out.println("Sisa stok Indomilk sekarang adalah " + stokIndomilk);
@@ -142,34 +165,32 @@ public class PendataanSusuUHT {
                             System.out.println("Sisa stok Frissianflag sekarang adalah " + stokFrissianFlag);
                             break;
                         case 5:
-                            stokHiLoTeen = restock("HiLoTeen", stokHiLoTeen, jmlRestock);
-                            System.out.println("Sisa stok Indomilk sekarang adalah " + stokHiLoTeen);
+                            stokHiLoTeen = restock("HiLo Teen", stokHiLoTeen, jmlRestock);
+                            System.out.println("Sisa stok HiLo Teen sekarang adalah " + stokHiLoTeen);
                             break;
                         case 6:
                             stokCimmoryFreshmilk = restock("Cimmory Freshmilk", stokCimmoryFreshmilk, jmlRestock);
-                            System.out.println("Sisa stok Indomilk sekarang adalah " + stokCimmoryFreshmilk);
+                            System.out.println("Sisa stok Commory Freshmilk sekarang adalah " + stokCimmoryFreshmilk);
                             break;
                         default:
                             System.out.println(invalidInput);
+
                     }
                     break;
                 case 3:
-infoGudang(stokIndomilk,stokUltramilk,stokMilo,stokFrissianFlag,stokHiLoTeen,stokCimmoryFreshmilk);
+                    infoGudang(stokIndomilk, stokUltramilk, stokMilo, stokFrissianFlag, stokHiLoTeen, stokCimmoryFreshmilk);
                     break;
                 case 4:
                     System.out.println("Anda keluar dari aplikasi, Terima kasih!");
                     break;
                 default:
-//                    System.out.println("Input salah!");
                     System.out.println(invalidInput);
+
             }
         } while (menu2 != 4);
-        //
 
     }
-// public  static void invalidInput(){
-//     System.out.println("Inpuy yang anda masukan salah!");
-// }
+
     public static int kirim(String brand, int stok, int jmlKirim) {
         System.out.println("Anda mengirim " + brand + " sebanyak " + jmlKirim);
         return stok - jmlKirim;
@@ -180,7 +201,6 @@ infoGudang(stokIndomilk,stokUltramilk,stokMilo,stokFrissianFlag,stokHiLoTeen,sto
         return stok + jmlRestock;
     }
 
-    //    public static int cekGudang(int stok)
     public static void menuGudang() {
         System.out.println("Menu Gudang");
         System.out.println("1. Kirim Barang");
@@ -200,39 +220,13 @@ infoGudang(stokIndomilk,stokUltramilk,stokMilo,stokFrissianFlag,stokHiLoTeen,sto
 
     }
 
-    public static void infoGudang(int a,int b,int c,int d, int e, int f){
-        System.out.println("Indomilk "+a);
-        System.out.println("Ultra Milk "+b);
-        System.out.println("Milo "+c);
-        System.out.println("Frissian Flag "+d);
-        System.out.println("HiLo Teen "+e);
-        System.out.println("Cimmory Freshmilk "+f);
+    public static void infoGudang(int a, int b, int c, int d, int e, int f) {
+        System.out.println("Indomilk " + a + " pcs");
+        System.out.println("Ultra Milk " + b + " pcs");
+        System.out.println("Milo " + c + " pcs");
+        System.out.println("Frissian Flag " + d + " pcs");
+        System.out.println("HiLo Teen " + e + " pcs");
+        System.out.println("Cimmory Freshmilk " + f + " pcs");
     }
 
-//    public static String id(int idBarang) {//batal
-//        String id = "";
-//        switch (idBarang) {
-//            case 1:
-//                id = "Indomilk";
-//                break;
-//            case 2:
-//                id = "Ultra Milk";
-//                break;
-//            case 3:
-//                id = "Milo";
-//                break;
-//            case 4:
-//                id = "Frissian Flag";
-//                break;
-//            case 5:
-//                id = "HiLo Teen";
-//                break;
-//            case 6:
-//                id = "Cimmory Freshmilk";
-//                break;
-//            default:
-//
-//        }
-//        return id;
-//    }
 }
